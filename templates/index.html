@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Stock Portfolio Tracker</title>
+    <link rel="stylesheet"
+    href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+
+<!-- ── Navbar ───────────────────────────────────── -->
+<nav class="navbar navbar-dark bg-dark px-4">
+    <span class="navbar-brand">📈 Stock Portfolio Tracker</span>
+    <div class="d-flex align-items-center gap-3">
+        <span class="text-white-50"
+        id="todays-date"></span>
+        <button class="btn btn-success btn-sm"
+        onclick="refreshPrices()">
+        🔄 Refresh Live Prices
+        </button>
+    </div>
+</nav>
+
+<div class="container mt-4">
+
+    <!-- ── Summary Cards ────────────────────────── -->
+    <div class="row mb-4 g-3">
+
+        <div class="col-md-4">
+            <div class="card p-3 text-center">
+                <div class="card-title">
+                💰 Total Invested
+                </div>
+                <div class="summary-value invested-color"
+                id="total-invested">
+                ₹0.00
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-4">
+            <div class="card p-3 text-center">
+                <div class="card-title">
+                📊 Current Value
+                </div>
+                <div class="summary-value current-color"
+                id="total-value">
+                ₹0.00
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-4">
+            <div class="card p-3 text-center">
+                <div class="card-title">
+                📈 Overall Profit/Loss
+                </div>
+                <div class="summary-value"
+                id="overall-pl">
+                ₹0.00
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- ── Add Stock Form ───────────────────────── -->
+    <div class="card mb-4 p-3">
+        <div class="card-title">➕ Add New Stock</div>
+
+        <div class="row g-2 align-items-center">
+
+            <!-- Symbol Input -->
+            <div class="col-md-4">
+                <label class="form-label">
+                Stock Symbol
+                </label>
+                <input
+                id="symbol"
+                class="form-control"
+                placeholder="eg. INFY.NS or AAPL">
+                <small class="text-muted">
+                Indian stocks: add .NS (eg. TCS.NS)
+                </small>
+            </div>
+
+            <!-- Quantity Input -->
+            <div class="col-md-3">
+                <label class="form-label">
+                Quantity
+                </label>
+                <input
+                id="quantity"
+                type="number"
+                min="1"
+                class="form-control"
+                placeholder="eg. 10">
+            </div>
+
+            <!-- Add Button -->
+            <div class="col-md-2 mt-3">
+                <button
+                class="btn btn-success w-100 mt-2"
+                onclick="addStock()">
+                ➕ Add Stock
+                </button>
+            </div>
+
+            <!-- Search Bar -->
+            <div class="col-md-3 mt-3">
+                <label class="form-label">
+                Search
+                </label>
+                <input
+                id="search"
+                class="form-control"
+                placeholder="🔍 Search Symbol..."
+                onkeyup="searchStock()">
+            </div>
+
+        </div>
+
+        <!-- Status Message -->
+        <div id="status-msg" class="mt-3"></div>
+
+    </div>
+
+    <!-- ── Stock Table ───────────────────────────── -->
+    <div class="card p-3 mb-4">
+        <div class="card-title">📋 My Stocks</div>
+        <div class="table-responsive">
+            <table class="table table-bordered table-hover">
+                <thead>
+                    <tr>
+                        <th>#</th>
+                        <th>Symbol</th>
+                        <th>Quantity</th>
+                        <th>Buy Price</th>
+                        <th>Live Price</th>
+                        <th>Profit / Loss</th>
+                        <th>Date Added</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+                <tbody id="stock-table-body">
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+</div>
+
+<!-- ── Footer ───────────────────────────────────── -->
+<div class="footer">
+    Stock Portfolio Tracker &copy; 2024 —
+    Live prices powered by Yahoo Finance
+</div>
+
+<script src="/static/script.js"></script>
+</body>
+</html>
